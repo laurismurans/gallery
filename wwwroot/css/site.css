@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.image-gallery {
+  margin: 0 auto;
+}
+
+.thumbnail {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.masonry_container {
+  max-width: 1080px; /* 4* masonry column width  */
+}
+
+.image-gallery {
+    margin: 0 auto;
+}
+
+.thumbnail {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 20px; /* Increase the gutter size */
+    transition: transform 0.3s ease-in-out;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1); /* Make the thumbnail slightly bigger on hover */
+    cursor: pointer;
+}

@@ -1,0 +1,4 @@
+bin
+*.jpg
+obj
+dist

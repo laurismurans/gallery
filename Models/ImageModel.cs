@@ -1,4 +1,8 @@
-public class ImageModel
+
+namespace Thailand.Models
 {
-    public List<string> ImagePaths { get; set; }
+    public class ImageModel
+    {
+        public required List<string> ImagePaths { get; set; }
+    }
 }

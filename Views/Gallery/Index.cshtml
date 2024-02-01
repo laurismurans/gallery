@@ -1,9 +1,9 @@
-@model ImageModel
+@model Thailand.Models.ImageModel
 
 <h2>Dynamic Image Gallery</h2>
 
 <div class="image-gallery">
-    @foreach (var imagePath in Model.ImagePaths.Take(20))
+    @foreach (var imagePath in Model.ImagePaths.Take(30))
     {
         <img src="~/images/thumbnails/thailand/@imagePath" alt="Image" class="thumbnail" />
     }
@@ -52,7 +52,7 @@
         // Function to bind click event to thumbnails
         function bindThumbnailClickEvent() {
             $('.thumbnail').click(function () {
-                var imagePath = $(this).attr('src').replace('/thumbnails', '');
+                var imagePath = $(this).attr('src').replace('thumbnails', 'published');
                 openImageModal(imagePath);
             });
         }

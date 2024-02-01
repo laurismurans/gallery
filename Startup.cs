@@ -1,12 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
-using System;
-using System.IO;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 
 namespace Thailand
@@ -59,48 +50,27 @@ namespace Thailand
             });
         }
 
-private void GenerateThumbnails()
-{
-    string sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "thailand");
-    string destinationPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "thumbnails", "thailand");
-
-    if (!Directory.Exists(destinationPath))
-    {
-        Directory.CreateDirectory(destinationPath);
-    }
-
-    foreach (string filePath in Directory.GetFiles(sourcePath, "*.jpg")) // Adjust the file extension as needed
-    {
-        try
+        private void GenerateThumbnails()
         {
-            string fileName = Path.GetFileName(filePath);
-            string destinationFilePath = Path.Combine(destinationPath, fileName);
+            string sourcePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "thailand");
+            string destinationThumbnailPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "thumbnails", "thailand");
+            string destinationPublishedPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "published", "thailand");
 
-            // Check if the thumbnail already exists
-            if (File.Exists(destinationFilePath))
+
+            if (!Directory.Exists(destinationThumbnailPath))
             {
-                Console.WriteLine($"Thumbnail already exists for '{fileName}'. Skipping.");
-                continue;
+                Directory.CreateDirectory(destinationThumbnailPath);
             }
 
-            using (var image = Image.Load(filePath))
+            if (!Directory.Exists(destinationPublishedPath))
             {
-                image.Mutate(x => x.Resize(new ResizeOptions
-                {
-                    Size = new Size(300, 300), // Adjust the thumbnail size as needed
-                    Mode = ResizeMode.Max
-                }));
-
-                image.Save(destinationFilePath);
+                Directory.CreateDirectory(destinationPublishedPath);
             }
+
+
+            ImageHelper.GenerateImages(sourcePath, destinationThumbnailPath);
+            ImageHelper.GenerateImages(sourcePath, destinationPublishedPath);
         }
-        catch (Exception ex)
-        {
-            // Handle any exceptions that may occur during image processing
-            Console.WriteLine($"Error processing image '{filePath}': {ex.Message}");
-        }
-    }
-}
 
     }
 }

@@ -53,9 +53,6 @@ namespace Thailand.Controllers
 
             List<string> imagePaths = [];
 
-            Console.Write(files.Length);
-            Console.Write(startingFileIndex);
-
             if (files.Length <= startingFileIndex)
             {
                 return [];
@@ -63,11 +60,11 @@ namespace Thailand.Controllers
 
             for (int i = startingFileIndex; i < startingFileIndex + pageSize; i++)
             {
-                Console.Write(i);
-                FileInfo file = files[startingFileIndex];
+                FileInfo file = files[i];
 
                 imagePaths.Add(file.Name);
             }
+
 
             return imagePaths;
         }
